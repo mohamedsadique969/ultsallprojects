@@ -1,0 +1,44 @@
+delimiter #
+create procedure changestan()
+begin
+DECLARE status varchar(20);
+DECLARE grade VARCHAR(20);
+DECLARE done INT DEFAULT 0;
+DECLARE mycur CURSOR FOR select bln_student_status,vchr_grade from tbl_students join tbl_grade on pk_int_student_id=fk_int_roll_no;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=1;
+OPEN mycur;
+looping:LOOP
+FETCH mycur INTO status,grade;
+if done=1 then
+leave looping;
+else
+if grade='B' then
+update tbl_grade set vchr_grade='F' where vchr_grade='E';
+iterate looping;
+END IF;
+END IF;
+END LOOP looping;
+CLOSE mycur;
+end #
+delimiter ;
+
+
+mysql> call changestan();
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+mysql> select * from tbl_grade;
++----------------+-------------+------------+
+| fk_int_roll_no | vchr_course | vchr_grade |
++----------------+-------------+------------+
+|              2 | btech       | A          |
+|              3 | bsc         | A          |
+|              1 | msc         | A          |
+|              4 | bsc         | F          |
+|              7 | btech       | C          |
+|              5 | msc         | F          |
+|              6 | mcom        | C          |
+|              8 | mtech       | A          |
+|             10 | msc         | C          |
+|              9 | bsc         | F          |
++----------------+-------------+------------+
+10 rows in set (0.00 sec)

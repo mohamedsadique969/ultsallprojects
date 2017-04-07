@@ -1,0 +1,34 @@
+mysql> select * from tbl_grade;
++----------------+-------------+------------+
+| fk_int_roll_no | vchr_course | vchr_grade |
++----------------+-------------+------------+
+|              2 | btech       | A          |
+|              3 | bsc         | A          |
+|              1 | msc         | A          |
+|              4 | bsc         | F          |
+|              7 | btech       | C          |
+|              5 | msc         | F          |
+|              6 | mcom        | C          |
+|              8 | mtech       | A          |
+|             10 | msc         | C          |
+|              9 | bsc         | F          |
++----------------+-------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> delimiter $
+mysql> create procedure getgrade(in gr varchar(2))
+    -> begin
+    -> select count(*) from tbl_grade where vchr_grade=gr;
+    -> end $
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter ;
+mysql> call getgrade('A');
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)

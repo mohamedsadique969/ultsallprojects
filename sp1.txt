@@ -1,0 +1,27 @@
+
+
+mysql> delimiter $
+mysql> create procedure createtable()
+    -> begin
+    -> create table tbl_student (pk_int_roll_no int(10) primary key auto_increme
+nt,int_enrollment_no int(10),vchr_name varchar(20),vchr_city varchar(20),vchr_mo
+bileno varchar(20),dat_dob date,bln_status varchar(20));
+    -> end $
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter ;
+mysql> call createtable();
+Query OK, 0 rows affected (0.10 sec)
+mysql> desc tbl_student;
++-------------------+-------------+------+-----+---------+----------------+
+| Field             | Type        | Null | Key | Default | Extra          |
++-------------------+-------------+------+-----+---------+----------------+
+| pk_int_roll_no    | int(10)     | NO   | PRI | NULL    | auto_increment |
+| int_enrollment_no | int(10)     | YES  |     | NULL    |                |
+| vchr_name         | varchar(20) | YES  |     | NULL    |                |
+| vchr_city         | varchar(20) | YES  |     | NULL    |                |
+| vchr_mobileno     | varchar(20) | YES  |     | NULL    |                |
+| dat_dob           | date        | YES  |     | NULL    |                |
+| bln_status        | varchar(20) | YES  |     | NULL    |                |
++-------------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.06 sec)

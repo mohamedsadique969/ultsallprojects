@@ -1,0 +1,19 @@
+delimiter $
+create procedure createtab()
+begin
+create table tbl_grade(fk_int_roll_no int(10),foreign key(fk_int_roll_no) references tbl_student(pk_int_roll_no),vchr_course varchar(20),vchr_grade char(1));
+end $ 
+delimiter ;
+
+call createtab();
+desc tbl_grade;
+
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| fk_int_roll_no | int(10)     | YES  | MUL | NULL    |       |
+| vchr_course    | varchar(20) | YES  |     | NULL    |       |
+| vchr_grade     | char(1)     | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+3 rows in set (0.13 sec)
+

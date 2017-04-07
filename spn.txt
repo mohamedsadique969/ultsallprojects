@@ -1,0 +1,28 @@
+delimiter #
+CREATE PROCEDURE abc(IN enrollno int,IN name varchar(20),IN city varchar(20),IN mobile varchar(20),IN dob date,IN status varchar(20))
+begin
+insert into tbl_stud (int_enrollment_no,vchr_name,vchr_city,vchr_mobileno,dat_dob,bin_status) values(enrollno,name,city,mobile,dob,status);
+end #
+delimiter ;
+call abc(1,"ashwin","calicut",1234567890,1989-12-12,"studying"); 
+call abc(2,"rahul","calicut",2345678901,1989-01-01,"studying");
+call abc(3,"raj","calicut",3456789012,1989-03-03,"studying");
+call abc(4,"remith","calicut",4567890123,1989-05-05,"studying");
+call abc(5,"arun","calicut",5678901234,1989-03-02,"studying");
+call abc(6,"amith","calicut",6789012345,1989-05-06,"studying");
+call abc(7,"ajith","cochin",7890123456,1989-05-02,"studying");
+call abc(8,"aswathi","cochin",8901234567,1989-03-02,"studying");
+call abc(9,"amjad","cochin",9012345667,1989-04-04,"studying");
+call abc(10,"athif","cochin",6877903231,1989-03-05,"studying");
+-------------------------------------------------------------------------
+//to print from 5th record onwards
+select int_enrollment_no from tbl_stud limit 10 offset 5;
+
+//row count
+mysql> select count(*) from tbl_stud;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.20 sec)

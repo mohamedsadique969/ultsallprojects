@@ -1,0 +1,53 @@
+mysql> select * from tbl_student;
++----------------+-------------------+-----------+-----------+---------------+------------+------------+
+| pk_int_roll_no | int_enrollment_no | vchr_name | vchr_city | vchr_mobileno | dat_dob    | bin_status |
++----------------+-------------------+-----------+-----------+---------------+------------+------------+
+|              1 |                 1 | ashwin    | calicut   | 1234567890    | 1989-12-12 | studying   |
+|              2 |                 2 | rahul     | calicut   | 2345678901    | 1989-01-01 | studying   |
+|              3 |                 3 | raj       | calicut   | 3456789012    | 1989-03-03 | studying   |
+|              4 |                 4 | remith    | calicut   | 4567890123    | 1989-05-05 | studying   |
+|              5 |                 5 | arun      | calicut   | 5678901234    | 1989-03-02 | studying   |
+|              6 |                 6 | amith     | calicut   | 6789012345    | 1989-05-06 | studying   |
+|              7 |                 7 | ajith     | cochin    | 7890123456    | 1989-05-02 | studying   |
+|              8 |                 8 | aswathi   | cochin    | 8901234567    | 1989-03-02 | studying   |
+|              9 |                 9 | amjad     | cochin    | 9012345667    | 1989-04-04 | studying   |
+|             10 |                10 | athif     | cochin    | 6877903231    | 1989-03-05 | studying   |
++----------------+-------------------+-----------+-----------+---------------+------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from tbl_grade;
++----------------+-------------+------------+
+| fk_int_roll_no | vchr_course | vchr_grade |
++----------------+-------------+------------+
+|              2 | btech       | A          |
+|              3 | bsc         | A          |
+|              1 | msc         | A          |
+|              4 | bsc         | F          |
+|              7 | btech       | C          |
+|              5 | msc         | F          |
+|              6 | mcom        | C          |
+|              8 | mtech       | A          |
+|             10 | msc         | C          |
+|              9 | bsc         | F          |
++----------------+-------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> delimiter $
+mysql> create procedure prina()
+    -> begin
+    -> select vchr_name from tbl_student join tbl_grade on pk_int_roll_no=fk_int_roll_no where vchr_city="calicut" and vchr_c
+ourse="bsc";
+    -> end $
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter ;
+mysql> call prina();
++-----------+
+| vchr_name |
++-----------+
+| raj       |
+| remith    |
++-----------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)

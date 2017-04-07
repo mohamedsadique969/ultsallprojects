@@ -1,0 +1,60 @@
+mysql>delimiter $
+->create procedure addgrade(IN roll int(10),IN crse varchar(20),IN gd char(1))
+->begin
+->insert into tbl_grade (fk_int_roll_no,vchr_course,vchr_grade) values(roll,crse,gd);
+->end $
+->delimiter ;
+ 
+->call addgrade(2,"btech","A");
+->call addgrade(3,"bsc","A");
+->call addgrade(1,"msc","A");
+->call addgrade(4,"bsc","B");
+->call addgrade(7,"btech","C");
+->call addgrade(5,"msc","B");
+->call addgrade(6,"mcom","C");
+->call addgrade(8,"mtech","A");
+->call addgrade(10,"msc","C");
+->call addgrade(9,"bsc","B");
+
+mysql> select * from tbl_grade;
++----------------+-------------+------------+
+| fk_int_roll_no | vchr_course | vchr_grade |
++----------------+-------------+------------+
+|              2 | btech       | A          |
+|              3 | bsc         | A          |
+|              1 | msc         | A          |
+|              4 | bsc         | B          |
+|              7 | btech       | C          |
+|              5 | msc         | B          |
+|              6 | mcom        | C          |
+|              8 | mtech       | A          |
+|             10 | msc         | C          |
+|              9 | bsc         | B          |
++----------------+-------------+------------+
+10 rows in set (0.00 sec)
+
+//row count
+mysql> select count(*) from tbl_grade;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.00 sec)
+
+
+delimiter $
+create procedure getgrade(in gr varchar(2))
+begin
+select count(*) from tbl_grade where vchr_grade=gr;
+end $
+delimiter ;
+mysql> call getgrade('A');
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
