@@ -9,13 +9,13 @@
                "chemistry" => 39
             ),
             
-            "qadir" => array (
+            "ali" => array (
                "physics" => 30,
                "maths" => 32,
                "chemistry" => 29
             ),
             
-            "zara" => array (
+            "ajay" => array (
                "physics" => 31,
                "maths" => 22,
                "chemistry" => 39
@@ -26,10 +26,10 @@
          echo "Marks for mohammad in physics : " ;
          echo $marks['mohammad']['physics'] . "<br />"; 
          
-         echo "Marks for qadir in maths : ";
+         echo "Marks for ali in maths : ";
          echo $marks['qadir']['maths'] . "<br />"; 
          
-         echo "Marks for zara in chemistry : " ;
+         echo "Marks for ajay in chemistry : " ;
          echo $marks['zara']['chemistry'] . "<br />"; 
       ?>
    
